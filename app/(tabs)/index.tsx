@@ -4,10 +4,8 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from '@env';
 
 export default function HomeScreen() {
-console.log("🚀 ~ SUPABASE_URL, SUPABASE_ANON_KEY:", SUPABASE_URL, SUPABASE_ANON_KEY)
 
   return (
    <View className='flex-1 justify-center items-center'>

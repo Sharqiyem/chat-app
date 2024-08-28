@@ -14,7 +14,6 @@ module.exports = {
           DEFAULT: '#805AD5',
           dark: '#6B46C1',
         },
-        // Add more custom colors as needed
       },
     },
   },
