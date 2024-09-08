@@ -1,4 +1,4 @@
-import { Slot, SplashScreen, useRouter, useSegments } from 'expo-router';
+import { Slot, SplashScreen, Stack, useRouter, useSegments } from 'expo-router';
 import { useEffect } from 'react';
 import { ClerkProvider, useAuth } from '@clerk/clerk-expo';
 import * as SecureStore from 'expo-secure-store';
@@ -33,16 +33,24 @@ function useProtectedRoute(isSignedIn?: boolean) {
     if (!isSignedIn && !inAuthGroup) {
       router.replace('/login');
     } else if (isSignedIn && inAuthGroup) {
-      router.replace('/');
+      router.replace('/(app)/chats');
     }
   }, [isSignedIn, segments]);
 }
 
+function RootStackLayout() {
+  return (
+    <Stack>
+      <Stack.Screen name="(app)" options={{ headerShown: false }} />
+      <Stack.Screen name="+not-found" />
+    </Stack>
+  );
+}
 function RootLayoutNav() {
-  const { isSignedIn } = useAuth();
-  useProtectedRoute(isSignedIn);
+  // const { isSignedIn } = useAuth();
+  // useProtectedRoute(isSignedIn);
 
-  return <Slot />;
+  return <RootStackLayout />;
 }
 
 export default function RootLayout() {

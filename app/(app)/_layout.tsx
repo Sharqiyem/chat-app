@@ -1,6 +1,7 @@
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from 'nativewind';
+import { Colors } from '@/constants/Colors';
 
 export default function AppLayout() {
   const { colorScheme } = useColorScheme();
@@ -10,8 +11,9 @@ export default function AppLayout() {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName: keyof typeof Ionicons.glyphMap;
+          console.log('first route', route.name);
 
-          if (route.name === 'index') {
+          if (route.name === '(chat)') {
             iconName = focused ? 'chatbubbles' : 'chatbubbles-outline';
           } else if (route.name === 'calls') {
             iconName = focused ? 'call' : 'call-outline';
@@ -23,14 +25,14 @@ export default function AppLayout() {
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: colorScheme === 'dark' ? 'white' : 'black',
+        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
           backgroundColor: colorScheme === 'dark' ? 'black' : 'white'
         }
       })}
     >
-      <Tabs.Screen name="index" options={{ title: 'Chats' }} />
+      <Tabs.Screen name="(chat)" options={{ title: 'Chats' }} />
       <Tabs.Screen name="calls" options={{ title: 'Calls' }} />
       <Tabs.Screen name="settings" options={{ title: 'Settings' }} />
     </Tabs>
